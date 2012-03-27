@@ -22,6 +22,7 @@
         currentRotation = 0.0,
         currentInterval,
         rotationMatrix,
+        instanceMatrix,
         vertexPosition,
         vertexColor,
 
@@ -118,32 +119,31 @@
     // Set up settings that will not change.  This is not "canned" into a
     // utility function because these settings really can vary from program
     // to program.
-    //gl.MatrixMode(GL_MODELVIEW);
     gl.enable(gl.DEPTH_TEST);
     gl.clearColor(0.0, 0.0, 0.0, 0.0);
     gl.viewport(0, 0, canvas.width, canvas.height);
-	
+
     // Build the objects to display.
     objectsToDraw = [
         {
         	vertices: Shapes.sphereBody(),
         	color: {r: 1.0, g:0.0, b:0.0 },
-        	mode: gl.LINE
-        	//transform: Matrix4x4.scale(.7, .7, .7)
+        	mode: gl.TRIANGLE_STRIP,
+            scale: 0.5
         },
         
         {
         	vertices: Shapes.spherePoleFirst(),
-        	color: {r: 0.0, g:0.0, b:1.0 },
-        	mode: gl.LINE
-        //	transform: Matrix4x4.scale(.7, .7, .7)
+        	color: {r: 1.0, g:0.0, b:0.0 },
+        	mode: gl.TRIANGLE_FAN,
+            scale: 0.5
         },
         
         {
         	vertices: Shapes.spherePoleSecond(),
-        	color: {r: 0.0, g:1.0, b:0.0 },
-        	mode: gl.LINE
-        //	transform: Matrix4x4.scale(.7, .7, .7)
+        	color: {r: 1.0, g:0.0, b:0.0 },
+        	mode: gl.TRIANGLE_FAN,
+            scale: 0.5
         }
     ];
 
@@ -204,14 +204,31 @@
     vertexColor = gl.getAttribLocation(shaderProgram, "vertexColor");
     gl.enableVertexAttribArray(vertexColor);
     rotationMatrix = gl.getUniformLocation(shaderProgram, "rotationMatrix");
+    instanceMatrix = gl.getUniformLocation(shaderProgram, "instanceMatrix");
 
     /*
      * Displays an individual object.
      */
     drawObject = function (object) {
+        var instanceTransform = new Matrix4x4();
+
         // Set the varying colors.
         gl.bindBuffer(gl.ARRAY_BUFFER, object.colorBuffer);
         gl.vertexAttribPointer(vertexColor, 3, gl.FLOAT, false, 0, 0);
+
+        // Set up this object's instance transformation.
+        object.location = object.location || { x: 0, y: 0, z: 0 };
+        object.scale = object.scale || 1.0;
+        instanceTransform.translate(
+            object.location.x,
+            object.location.y,
+            object.location.z
+        );
+        instanceTransform.scale(object.scale, object.scale, object.scale);
+
+        // Pass the matrix into WebGL.
+        console.log(instanceTransform.contents);
+        gl.uniformMatrix4fv(instanceMatrix, gl.FALSE, new Float32Array(instanceTransform.contents));
 
         // Set the varying vertex coordinates.
         gl.bindBuffer(gl.ARRAY_BUFFER, object.buffer);
