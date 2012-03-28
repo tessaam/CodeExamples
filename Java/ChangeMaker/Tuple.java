@@ -1,6 +1,10 @@
-
+/* Tuple constructor used in the dynamic programming example of generalized
+ * change making.
+ */
+ 
 public class Tuple {
-public int [] tupleContent;
+	
+	public int [] tupleContent;
 	
 	//creates a tuple from a given int[]
 

@@ -1,4 +1,9 @@
-
+/* An example of dynamic programming as a generalized ChangeMaker. Takes in arguments as the 
+ * the amount of change to make and the number of coin denominations
+ * and returns the fewest number of coins to make the provided amount 
+ * of change.
+ */
+ 
 public class ChangeMaker {
 
 	public static void main(String[] args) {
