@@ -1,4 +1,6 @@
-
+/* Constructor for a circle class that has methods to return a square
+ * bounding box.
+ */
 
 public class Circle {
 	 double x;

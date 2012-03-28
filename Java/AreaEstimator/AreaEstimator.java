@@ -1,3 +1,8 @@
+/* Java program that estimates the area of an arbitrary number of 
+ * circles and triangles by generating random points and returning 
+ * how many of those pts are within the bounds of that shape
+ */
+ 
 import java.util.Arrays;
 
 public class AreaEstimator {
@@ -152,8 +157,7 @@ public class AreaEstimator {
 		 
 		//prints out the ratio of darts that landed in the area / total darts multiplied by the bounding rectangle area to give the final result.
 		 
-		System.out.println((counter/numberOfDartThrows) * BoundingRectArea);
-		
+		System.out.println((counter/numberOfDartThrows) * BoundingRectArea);	
 	}
 }
 

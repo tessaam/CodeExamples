@@ -1,4 +1,4 @@
-
+/* Constructor for the triangle class used in AreaEstimator */
 
 public class Triangle {
 	 double x;

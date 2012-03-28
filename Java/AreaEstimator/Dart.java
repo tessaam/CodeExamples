@@ -1,4 +1,7 @@
-
+/* Dart class for AreaEstimator with methods that test if the dart is 
+ * within a triangle or circle.
+ */
+ 
 public class Dart {
     double x;
 	double y;
