@@ -1,3 +1,5 @@
+/* Constructor for a linked list that is used in the Josephus Solver */
+
 import java.util.Iterator;
 
 public class LinkedCircularList {

@@ -1,3 +1,5 @@
+/* Constructor for a basic list element in a linked list */
+
 public class ListElement {
 	
         private int data;

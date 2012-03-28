@@ -1,3 +1,5 @@
+/* Creates an interface for a CircularList */
+
 import java.util.Iterator;
 
 public interface CircularList{
