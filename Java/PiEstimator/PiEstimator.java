@@ -1,4 +1,7 @@
-
+/* Method that uses dart class to estimate Pi in a 2x2 square.
+ * the greater the number of darts, the more accurate the estimation.
+ */
+ 
 public class PiEstimator {
 	public static void main (String [] args){
 		long numberOfDartThrows = Long.parseLong(args[0]);
